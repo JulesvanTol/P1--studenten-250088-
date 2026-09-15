@@ -4,6 +4,11 @@ function setup() {
 
 function draw() {
 
+  //Variable collection
+  
+
+  //------------------------------------------------------------------------
+
   //Sky
   background(130, 100, 180);
   strokeWeight(0)
