@@ -4,9 +4,11 @@ function setup() {
 
   background(220);
 
-  //score
+  //randomize score
 
   let score = random(0, 100);
+
+  //display score
 
   if (score >= 90) {
     fill(0, 205, 70), text("Uitstekend!", 20, 20);
