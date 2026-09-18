@@ -5,11 +5,21 @@ function setup() {
 //Variable collection
 
 let movement_train = -100;
-let movement_Strain = 400;
+let movement_Strain = 100;
+let movement_smog1 = 0;
+let movement_smog2 = 75;
+let movement_smog3 = 0;
+let movement_sunX = 200;
+let movement_sunY = 200;
+let movement_moonX = 0;
+let movement_moonY = -200;
 
+let colordark = 1;
 let shinesize = 1;
 let shinesize2 = 1;
 let shinesize3 = 1;
+let Mshinesize = 1;
+let Mshinesize2 = 1;
 let trainSpeed = 1;
 let trainSSpeed = 1;
 let redLight = false
@@ -46,17 +56,25 @@ function keyPressed() {
 
 function draw() {
 
-  //Sky
+  //day&night cycle
 
-  background(130, 100, 180);
-  strokeWeight(0)
+  background(150 + colordark * 1.1, 130 + colordark * 0.8, 230 + colordark * 1.5);
+  strokeWeight(0);
 
-  fill(150, 110, 160);
+  /*fill(150 + colordark, 110 + colordark, 160 + colordark);
   circle(400, 1050, 2000);
-  fill(180, 120, 150);
+  fill(180 + colordark, 120 + colordark, 150 + colordark);
   circle(400, 1100, 2000);
-  fill(220, 150, 160);
-  circle(400, 1150, 2000);
+  fill(220 + colordark, 150 + colordark, 160 + colordark);
+  circle(400, 1150, 2000); */
+
+  if(movement_moonY >= 200) {
+    colordark = colordark + 0.1
+  };
+
+   if(movement_sunY >= 200) {
+    colordark = colordark - 0.1
+  };
 
   //------------------------------------------------------------------------
 
@@ -72,19 +90,50 @@ function draw() {
   //sun
 
   fill(235, 165, 100);
-  circle(200, 200, shinesize);
+  circle(movement_sunX, movement_sunY, shinesize);
 
   shinesize = shinesize * sin(1 + frameCount * 0.02) * 0.2 + 120;
 
   fill(255, 215, 100);
-  circle(200, 200, shinesize2);
+  circle(movement_sunX, movement_sunY, shinesize2);
 
   shinesize2 = shinesize2 * sin( 1.3 + frameCount * 0.02) * 0.2 + 100;
 
   fill(255, 255, 200);
-  circle(200, 200, shinesize3);
+  circle(movement_sunX, movement_sunY, shinesize3);
 
   shinesize3 = shinesize3 * sin(1.6 + frameCount * 0.02) * 0.2 + 80;
+
+  movement_sunY = movement_sunY + 0.3;
+
+  if (movement_sunY >= 600) {
+    movement_sunY = -200; movement_sunX = 0
+  };
+
+ movement_sunX = movement_sunX + 0.15;
+
+  //moon
+
+  fill(175);
+  circle(movement_moonX, movement_moonY, Mshinesize);
+
+  Mshinesize = Mshinesize * sin(1 + frameCount * 0.04) * 0.05 + 100;
+
+  fill(205);
+  circle(movement_moonX, movement_moonY, Mshinesize2);
+
+  Mshinesize2 = Mshinesize2 * sin( 1.3 + frameCount * 0.04) * 0.05 + 90;
+
+  fill(255);
+  circle(movement_moonX, movement_moonY, 80);
+
+  movement_moonY = movement_moonY + 0.3;
+
+  if (movement_moonY >= 600) {
+    movement_moonY = -200; movement_moonX = 0
+  };
+
+  movement_moonX = movement_moonX + 0.15;
 
   //------------------------------------------------------------------------
 
@@ -98,10 +147,88 @@ function draw() {
   rect(0, 400, 800, 200);
 
   fill(60);
+  rect(50, 350, 8, 50);
+  triangle(30, 355, 78, 355, 54, 330);
+  triangle(35, 340, 73, 340, 54, 315);
+  triangle(40, 325, 68, 325, 54, 300);
+
+  rect(450, 350, 8, 50);
+  triangle(430, 355, 478, 355, 454, 330);
+  triangle(435, 340, 473, 340, 454, 315);
+  triangle(440, 325, 468, 325, 454, 300);
+
+  rect(550, 350 - 55, 8, 50);
+  triangle(530, 355 - 55, 578, 355 - 55, 554, 330 - 55);
+  triangle(535, 340 - 55, 573, 340 - 55, 554, 315 - 55);
+  triangle(540, 325 - 55, 568, 325 - 55, 554, 300 - 55);
+
   triangle(0, 450, 250, 200, 800, 550);
   triangle(0, 500, 680, 270, 1800, 600);
   triangle(-500, 500, 200, 340, 200, 500);
   rect(0, 400, 800, 200);
+
+  //------------------------------------------------------------------------
+
+  //smog movement
+
+  movement_smog1 = movement_smog1 + 1.8;
+
+  if (movement_smog1 >= 100) {
+    movement_smog1 = 0;
+  };
+
+  movement_smog2 = movement_smog2 - 1.4;
+
+  if (movement_smog2 <= -50) {
+    movement_smog2 = 50;
+  };
+
+  movement_smog3 = movement_smog3 + 1;
+
+  if (movement_smog3 >= 100) {
+    movement_smog3 = 0;
+  };
+
+  //smog display
+
+  fill(120);
+  circle(movement_smog1, 480, 150);
+  circle(movement_smog1 + 100, 480, 150);
+  circle(movement_smog1 + 200, 480, 150);
+  circle(movement_smog1 + 300, 480, 150);
+  circle(movement_smog1 + 400, 480, 150);
+  circle(movement_smog1 + 500, 480, 150);
+  circle(movement_smog1 + 600, 480, 150);
+  circle(movement_smog1 + 700, 480, 150);
+  circle(movement_smog1 + 800, 480, 150);
+  circle(movement_smog1 - 100, 480, 150);
+  circle(movement_smog1 - 200, 480, 150);
+
+  fill(150);
+  circle(movement_smog2 + 50, 550, 150);
+  circle(movement_smog2 + 150, 550, 150);
+  circle(movement_smog2 + 250, 550, 150);
+  circle(movement_smog2 + 350, 550, 150);
+  circle(movement_smog2 + 450, 550, 150);
+  circle(movement_smog2 + 550, 550, 150);
+  circle(movement_smog2 + 650, 550, 150);
+  circle(movement_smog2 + 750, 550, 150);
+  circle(movement_smog2 + 850, 550, 150);
+  circle(movement_smog2 - 50, 550, 150);
+  circle(movement_smog2 - 150, 550, 150);
+
+  fill(180);
+  circle(movement_smog3, 620, 150);
+  circle(movement_smog3 + 100, 620, 150);
+  circle(movement_smog3 + 200, 620, 150);
+  circle(movement_smog3 + 300, 620, 150);
+  circle(movement_smog3 + 400, 620, 150);
+  circle(movement_smog3 + 500, 620, 150);
+  circle(movement_smog3 + 600, 620, 150);
+  circle(movement_smog3 + 700, 620, 150);
+  circle(movement_smog3 + 800, 620, 150);
+  circle(movement_smog3 - 100, 620, 150);
+  circle(movement_smog3 - 200, 620, 150);
 
   //------------------------------------------------------------------------
 
@@ -140,23 +267,30 @@ function draw() {
 
   movement_train = movement_train + trainSpeed;
 
-  if (trainGo == true) {
-    trainSpeed = trainSpeed + 0.08
+  if (trainSlow == true && movement_train >= 200 && movement_train <= 600 ||
+     trainNo == true && movement_train >= 200 && movement_train <= 600) {
+    trainSpeed = trainSpeed - 0.05
+  }
+    else {
+     trainSpeed = trainSpeed + 0.05
+    };
+
+  if (trainSpeed >= 5) {
+    trainSpeed = 5
   };
 
-  if (trainSlow == true || trainNo == true) {
-    trainSpeed = trainSpeed - 0.08
+  if (trainSlow == true && trainSpeed <= 2) {
+    trainSpeed = 2
   };
 
-  if (trainSpeed >= 8 && trainGo == true) {
-    trainSpeed = 8
+  if (trainNo == true && movement_train >= 500 && movement_train <= 600) {
+    trainSpeed = trainSpeed - 0.05
+  }
+  else if (trainSpeed <= 2 && trainNo == true && movement_train >= 200) {
+    trainSpeed = 2
   };
 
-  if (trainSlow == true && trainSpeed <= 3) {
-    trainSpeed = 3
-  };
-
-  if (trainSpeed <= 0 && trainNo == true) {
+  if (trainSpeed <= 0) {
     trainSpeed = 0
   };
 
@@ -164,7 +298,7 @@ function draw() {
     movement_train = -100
   };
 
-  //train 
+  //train display
   
   circle(movement_train + 15, 490, 20);
   circle(movement_train - 10, 490, 20);
@@ -194,32 +328,48 @@ function draw() {
   rect(movement_train - 175 - 300, 420, 150, 60);
   rect(movement_train - 175 - 330, 475, 40, 8);
 
+  //lights
+
+  fill(200, 180, 100);
+
+  if (colordark >= - 80) {
+    fill(30)
+  };
+
+  rect(movement_train - 110, 430, 20, 30, 5);
+
   //------------------------------------------------------------------------
 
   //supertrain movement
 
-  fill (0);
-  text(trainSSpeed, 20, 20);
+  movement_Strain = movement_Strain + trainSSpeed;
 
   movement_Strain = movement_Strain + trainSSpeed;
 
-  if (trainGo == true) {
-    trainSSpeed = trainSSpeed + 0.2
+  if (trainSlow == true && movement_Strain >= 0 && movement_Strain <= 600 ||
+     trainNo == true && movement_Strain >= 0 && movement_Strain <= 600) {
+    trainSSpeed = trainSSpeed - 0.1
+  }
+  else {
+    trainSSpeed = trainSSpeed + 0.1
   };
 
-  if (trainSlow == true || trainNo == true) {
-    trainSSpeed = trainSSpeed - 0.2
+  if (trainSSpeed >= 7) {
+    trainSSpeed = 7
   };
 
-  if (trainSSpeed >= 20 && trainGo == true) {
-    trainSSpeed = 20
+  if (trainSlow == true && trainSSpeed <= 4) {
+    trainSSpeed = 4
   };
 
-  if (trainSlow == true && trainSSpeed <= 5) {
-    trainSSpeed = 5
+  if (trainNo == true && movement_Strain >= 400 && movement_Strain <= 600) {
+    trainSSpeed = trainSSpeed - 0.1
+  }
+  else if (trainSSpeed <= 4 && trainNo == true && movement_Strain >= 0) {
+    trainSSpeed = 4
   };
 
-  if (trainSSpeed <= 0 && trainNo == true) {
+  if (trainSSpeed <= 0) {
     trainSSpeed = 0
   };
 
@@ -256,6 +406,26 @@ function draw() {
   circle(movement_Strain - 320 - 235, 490, 20);
   circle(movement_Strain - 320 - 265, 490, 20);
 
+  //lights
+
+  fill(230, 230, 150);
+
+  if (colordark >= -80) {
+    fill(0)  
+  };
+  
+  triangle(movement_Strain + 18, 470, movement_Strain - 15, 470, movement_Strain - 15, 450);
+  rect(movement_Strain - 110, 450, 30, 20, 2);
+  rect(movement_Strain - 70, 450, 30, 20, 2);
+  rect(movement_Strain - 260, 450, 30, 20, 2);
+  rect(movement_Strain - 220, 450, 30, 20, 2);
+  rect(movement_Strain - 180, 450, 30, 20, 2);
+  rect(movement_Strain - 160 - 260, 450, 30, 20, 2);
+  rect(movement_Strain - 160 - 220, 450, 30, 20, 2);
+  rect(movement_Strain - 160 - 180, 450, 30, 20, 2);
+  rect(movement_Strain - 320 - 260, 450, 30, 20, 2);
+  rect(movement_Strain - 320 - 220, 450, 30, 20, 2);
+  rect(movement_Strain - 320 - 180, 450, 30, 20, 2);
   
   //------------------------------------------------------------------------
 
@@ -301,5 +471,19 @@ function draw() {
   rect(785, 497, 10, 5);
   rect(835, 497, 10, 5);
 
+  //------------------------------------------------------------------------
+
+  //trees foreground
+
+  fill(0)
+
+  triangle(100, 600, 300, 600, 200, 500);
+  triangle(120, 560, 280, 560, 200, 440);
+  triangle(140, 520, 260, 520, 200, 400);
+  triangle(470, 600, 530, 600, 500, 550);
+  triangle(720, 570, 800, 570, 800, 460);
+  triangle(700, 600, 800, 600, 800, 540);
+
+  //------------------------------------------------------------------------
 
 }
