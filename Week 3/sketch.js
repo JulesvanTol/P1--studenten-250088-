@@ -440,9 +440,9 @@ function draw() {
   textSize(20)
   fill(255);
   text("Score:", 170, 150);
-  text(scorePlayer1, 235, 150);
+  text(scorePlayer2, 235, 150);
   text("-", 254, 150);
-  text(scorePlayer2, 270, 150);
+  text(scorePlayer1, 270, 150);
   
   //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -648,7 +648,7 @@ function draw() {
     fill(colorPlayer1R, colorPlayer1G, colorPlayer1B);
     rect(110, 120, 390, 200, 10);
     fill(255);
-    text("PLAYER 1 WON!", 130, 190);
+    text("PLAYER 2 WON!", 130, 190);
     fill(colorPlayer1R - 100, colorPlayer1G - 100, colorPlayer1B - 100);
     rect(200, 220, 200, 60, 8);
     fill(colorPlayer1R - 50, colorPlayer1G - 50, colorPlayer1B - 50);
@@ -664,7 +664,7 @@ function draw() {
     fill(colorPlayer2R, colorPlayer2G, colorPlayer2B);
     rect(110, 120, 390, 200, 10);
     fill(255);
-    text("PLAYER 2 WON!", 130, 190);
+    text("PLAYER 1 WON!", 130, 190);
     fill(colorPlayer2R - 100, colorPlayer2G - 100, colorPlayer2B - 100);
     rect(200, 220, 200, 60, 8);
     fill(colorPlayer2R - 50, colorPlayer2G - 50, colorPlayer2B - 50);
