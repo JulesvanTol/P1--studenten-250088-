@@ -792,25 +792,31 @@ function draw() {
 
   //------------------------------------------------------------------------------------------------------------------------------------------
 
-  // helptext
+  //test
+  //for(let a = 0; a < 255; a++) {
 
-  /*textSize(10);
+  //}
+
+  strokeWeight(5);
+
+  for(let i = 1; i < 4; i++) {
+    if (i == 1) {
+      fill('red')
+    }
+    else if (i == 2) {
+      fill('orange')
+    }
+    else{
+      fill('green')
+    };
+    circle(30, 30 + (i * 35), 30);
+  };
+  
   fill(255);
-  text(color1Selected, 20, 20);
-  text(startingScreen, 20, 40);
-  text(colorPlayer1R, 20, 60);
-  text(colorPlayer1G, 40, 60);
-  text(colorPlayer1B, 60, 60);
-  text(colorPlayer2R, 20, 80);
-  text(colorPlayer2G, 40, 80);
-  text(colorPlayer2B, 60, 80);
-  text(activePlayer1, 20, 100);
-  text(activePlayer2, 20, 120);
-  text(colorCount, 20, 140);
-  text(color1Selected, 20, 180);
-  text(color2Selected, 20, 200);
-  text(color3Selected, 20, 220);
-  text(color4Selected, 20, 240);*/
-  
-  
+
+  let index = 0;
+  while(index < 5) {
+    rect(50 + (index * 50), 50, 50, 50);
+    index++;
+  }
 }
