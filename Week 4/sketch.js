@@ -1,3 +1,5 @@
+//possible Colors
+
 const colors = [
   'crimson',
   'teal',
@@ -10,6 +12,10 @@ const colors = [
   'orchid',
   'darkorange'
 ];
+  
+//--------------------------------------------------------------------------------------
+
+//possible shapes
 
 const shapes = ['circle','rect'];
 
@@ -19,6 +25,11 @@ function setup() {
 }
 
 function draw() {
+
+  //--------------------------------------------------------------------------------------
+
+  //randomization
+
     let randomColorFill = random(colors);
     let randomColorStroke = random(colors);
     let type = random(shapes);
@@ -32,6 +43,10 @@ function draw() {
 
     angleMode(DEGREES);
     let angle = random(1,360);
+
+  //--------------------------------------------------------------------------------------
+
+  //draw shapes
 
     fill(randomColorFill);
     stroke(randomColorStroke);
